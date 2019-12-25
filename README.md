@@ -18,7 +18,7 @@ Connect your Arduino Uno to the JTAG port of the target device:
 | `5` (input)     | `TDO`    |
 | `GND`           | `GND`    |
 
-The Arduino's pins are configured as *open drain* outputs to automatically adjust to the target's JTAG I/O voltage. External pull-up resistors aren't required, as Xilinx PLDs supply them internally.
+The Arduino's pins are configured as *open drain* outputs to automatically adjust to the target's JTAG I/O voltage. External pull-up resistors aren't required, as Xilinx PLDs provide them internally.
 
 ## Software
 So far, this project has been tested successfully using **ISE 14.7** and **iMPACT**. 
@@ -37,7 +37,16 @@ python tcp_serial_redirect -P 2542 COMx 115200
 5. Enter the following into the combobox below:
 
 ```
-xilinx_xvc host=127.0.0.1:2542 disableversioncheck=true
+xilinx_xvc host=127.0.0.1:2542 disableversioncheck=false
 ```
+Set `disableversioncheck` to `false` for iMPACT to parse the `getinfo` version string and maximum packet size.
 
 6. The PLD should now show up and be identified correctly when you run *Initialize Chain*.
+
+### Programming / Readout speed
+JTAG transfers are limited to a clock frequency of ~100 kHz, leading to excessive programming times for large FPGA bitfiles. 
+
+| Device   | File size | Programming time |
+|----------|-----------|------------------|
+| XC2C64A  | 27 kiB    | 10 Seconds       |
+| XC6SLX9  | 333 kiB   | 5 Minutes        |

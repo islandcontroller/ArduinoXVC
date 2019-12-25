@@ -27,7 +27,13 @@
 #define OPENDRAIN       INPUT
 
 /*! Message buffer size                                                      */
+#if defined(ARDUINO_AVR_UNO) || defined(ARDUINO_AVR_LEONARDO)
+#define DATA_BUF_SIZE   632
+#elif defined(ARDUINO_AVR_MEGA)
+#define DATA_BUF_SIZE   1468
+#else
 #define DATA_BUF_SIZE   128
+#endif
 #define DATA_VEC_LEN    (DATA_BUF_SIZE * 8)
 
 /*! Pin definitions for JTAG connection
@@ -220,7 +226,7 @@ void setup()
   memset((uint8_t*)aucDataTDx, 0, sizeof(aucDataTDx));
 
   /* Initialise TCK timer                                                    */
-  setTimer1Period(50UL);
+  setTimer1Period(5UL);
 }
 
 /*!***************************************************************************
@@ -235,7 +241,7 @@ void loop()
     /* Get protocol version and max. vector length                           */
     Serial.print("xvcServer_v1.0:");
     Serial.print(DATA_BUF_SIZE, DEC);
-    Serial.print("\n");
+    Serial.print("0\n");
   }
   else if (cmd.compareTo("settck") == 0)
   {
