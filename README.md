@@ -3,6 +3,8 @@
 
 This project implements a bare-bones Xilinx Virtual Cable server on an Arduino Uno / Leonardo, based on the specification posted in [Xilinx/XilinxVirtualCable](https://github.com/Xilinx/XilinxVirtualCable).
 
+<img align="center" src="scr.png" />
+
 ## Hardware
 Make sure that the device's JTAG output-high voltage does not exceed the Arduino's maximum input voltage!
 
@@ -19,7 +21,7 @@ Connect your Arduino Uno to the JTAG port of the target device:
 The Arduino's pins are configured as *open drain* outputs to automatically adjust to the target's JTAG I/O voltage. External pull-up resistors aren't required, as Xilinx PLDs supply them internally.
 
 ## Software
-So far, this project has been tested successfully using **ISE 14.7** and **iMPACT**.
+So far, this project has been tested successfully using **ISE 14.7** and **iMPACT**. 
 
 An additional program is required to translate the serial port to a TCP socket, e.g. [pyserial: tcp_serial_redirect](https://github.com/pyserial/pyserial/blob/master/examples/tcp_serial_redirect.py).
 
