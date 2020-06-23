@@ -317,18 +317,14 @@ ISR(TIMER1_OVF_vect)
       if (uiDataIndex < uiDataLen)
       {
         setBitInVector((uint8_t*)aucDataTDx, uiDataIndex, digitalRead(TDO_PIN));
+        digitalWrite_OD(TCK_PIN, HIGH);
+        eState = EN_JTAG_STATE_FALLINGEDGE;
       }
-
-      if (uiDataIndex >= uiDataLen)
+      else
       {
         /* Shifted in last bit - transfer complete                           */
         digitalWrite(LED_PIN, LOW);
         eState = EN_JTAG_STATE_DONE;
-      }
-      else
-      {
-        digitalWrite_OD(TCK_PIN, HIGH);
-        eState = EN_JTAG_STATE_FALLINGEDGE;
       }
       break;
 
