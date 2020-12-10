@@ -1,5 +1,5 @@
 # ArduinoXVC
-[![Build Status](https://travis-ci.com/inselc/ArduinoXVC.svg?branch=master)](https://travis-ci.com/inselc/ArduinoXVC)
+[![Build Status](https://travis-ci.com/islandcontroller/ArduinoXVC.svg?branch=master)](https://travis-ci.com/islandcontroller/ArduinoXVC)
 
 This project implements a bare-bones Xilinx Virtual Cable server on an Arduino Uno / Leonardo, based on the specification posted in [Xilinx/XilinxVirtualCable](https://github.com/Xilinx/XilinxVirtualCable).
 
